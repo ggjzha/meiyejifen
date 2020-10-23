@@ -1,4 +1,4 @@
-package com.yueer;
+package com.chengxi;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

@@ -1,12 +1,12 @@
 server:
-  servlet.context-path: /yueer
+  servlet.context-path: /chengxi
   port: 8080
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1/yueer?characterEncoding=utf-8&serverTimezone=GMT%2B8&autoReconnect=true
-    username: yueer
-    password: sraxzscn170614
+    url: jdbc:mysql://www.localhost.com/chengxi?characterEncoding=utf-8&serverTimezone=GMT%2B8&autoReconnect=true
+    username: chengxi
+    password: chenGxi125629
     tomcat:
       init-s-q-l: SET NAMES 'utf8mb4'
     driver-class-name: com.mysql.jdbc.Driver
@@ -18,29 +18,27 @@ spring:
       database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 
   jmx:
-    default-domain: yueer
-
+    default-domain: chengxi
 
   servlet:
     multipart:
       max-request-size: 10MB
       max-file-size: 10MB
 
-
 redis:
   database: 1
-  host: 127.0.0.1
+  host: www.localhost.com
   port: 6379
-  password: h0Q8Tj02Jp
+  password: h08ipfsTj0Jp
   timeout: 0
 
 #阿里云oos存储
 oos:
-  accessKeyId: LTAIXjdMD9qIc9Wl
-  accessKeySecret: wb5Dhb2t9OPYqBK5LQrMkfv4T61acF
+  accessKeyId: XXX
+  accessKeySecret: XXX
   endpoint: oss-cn-beijing.aliyuncs.com
-  bucketName: yueer
+  bucketName: chengxi
 
 logging:
-  file: /opt/javalog/yueer/pro.log
+  file: /opt/javalog/chengxi/pro.log
 

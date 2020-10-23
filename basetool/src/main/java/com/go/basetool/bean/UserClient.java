@@ -11,9 +11,13 @@ import java.util.Date;
 
 @Data
 public class UserClient {
-    Integer userID;
+    String userID;
+
+    String ip;
 
     String cookie;
 
     Integer myRole;
+
+    Integer status;
 }

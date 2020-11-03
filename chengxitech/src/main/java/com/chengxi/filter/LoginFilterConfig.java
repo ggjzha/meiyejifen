@@ -8,12 +8,12 @@ import javax.servlet.Filter;
 
 @Configuration
 public class LoginFilterConfig {
-    @Bean
+    //@Bean
     public FilterRegistrationBean someFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(someFilter());
-        //registration.addUrlPatterns("/v1.0/delphy/*");
-        registration.setOrder(0);
+        //registration.addUrlPatterns("/v1.0/delphy/*");//设置拦截路径
+        registration.setOrder(0);//设置过滤器执行的优先级
         return registration;
     }
 

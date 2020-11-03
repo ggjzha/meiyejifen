@@ -1,4 +1,4 @@
-package com.chengxi.user.dto;
+package com.chengxi.touhaowanjia.user.dto;
 
 import lombok.Data;
 

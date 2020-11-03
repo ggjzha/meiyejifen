@@ -14,6 +14,7 @@ public class DataBinderManager {
         DataBinder dataBinder = BINDER_MAP.get(bindType);
         if (dataBinder == null) {
             DataBinder bind = new ThreadLocalDataBinder();
+            //如果ConcurrentHashMap中有bind则返回ConcurrentHashMap中的，防止多线程时多次初始化bind
             dataBinder = BINDER_MAP.putIfAbsent(bindType, bind);
             if (dataBinder == null) {
                 dataBinder = bind;
@@ -21,5 +22,6 @@ public class DataBinderManager {
         }
         return dataBinder;
     }
-
+//一次请求----10个接口，用户是谁？
+//一个线程-第一个入口
 }

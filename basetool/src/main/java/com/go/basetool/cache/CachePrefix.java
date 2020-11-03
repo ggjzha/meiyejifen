@@ -6,4 +6,4 @@ public class CachePrefix {
         return userInfoPrefix+uid;
     }
     public static String phoneCodeMsgInfoPrefix = "phoneCodeMsgInfoPrefix";
-}
+}//redis userInfoPrefix+jintong_id_cookie=logininfo/**/

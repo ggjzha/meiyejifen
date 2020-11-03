@@ -49,9 +49,8 @@ public class RedisClient {
         }
         return true;
     }
-
+    //设置过期时间
     public boolean set(String key, String value, Integer seconds)  {
-
         init();
         try {
             Jedis jedis = null;
@@ -70,6 +69,23 @@ public class RedisClient {
         return true;
     }
 
+    public boolean updateSeconds(String key, Integer seconds)  {
+        init();
+        try {
+            Jedis jedis = null;
+            try {
+                jedis = jedisPool.getResource();
+                jedis.expire(key, seconds);
+            } finally {
+                //返还到连接池
+                jedis.close();
+            }
+        }catch (Exception e){
+            log.error("", e);
+            return false;
+        }
+        return true;
+    }
 
     public String get(String key)  {
         init();

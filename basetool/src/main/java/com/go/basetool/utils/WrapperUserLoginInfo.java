@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
-public class WrapperUserInfo {
+public class WrapperUserLoginInfo {
     public static UserLoginInfo wrapper(UserClient userClient,Object value){
         UserLoginInfo userLoginInfo = new UserLoginInfo();
         userLoginInfo.setUserClient(userClient);

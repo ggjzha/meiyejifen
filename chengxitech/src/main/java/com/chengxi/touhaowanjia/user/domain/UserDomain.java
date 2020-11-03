@@ -1,7 +1,8 @@
-package com.chengxi.user.domain;
+package com.chengxi.touhaowanjia.user.domain;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,20 +12,14 @@ import javax.persistence.Table;
 @Slf4j
 @Data
 @Entity
-@Table(name = "User")
+@Table(name = "user")
 public class UserDomain {
     @Id
     @Column(name = "userid")
     String userID;
 
-    @Column(name = "phonenum")
+    @Column(name = "phonenum",unique = true)
     String phoneNum;
-
-    @Column(name = "userheaderpicurl")
-    String userHeaderPicUrl;
-
-    @Column(name = "status")
-    private Integer status;
 
     @Column(name = "role")
     private Integer role;//1普通用户 2管理员
@@ -34,4 +29,7 @@ public class UserDomain {
 
     @Column(name = "username")
     String userName;
+
+    @Column(name = "shopid")
+    private String shopID;
 }

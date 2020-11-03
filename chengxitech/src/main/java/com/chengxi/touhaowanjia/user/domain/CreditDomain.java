@@ -9,16 +9,25 @@ import javax.persistence.*;
 @Slf4j
 @Data
 @Entity
-@Table(name = "shopcredit")
-public class ShopCreditDomain {
+@Table(name = "credit")
+public class CreditDomain {
     @Id
-  //  @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "shopcreditid")
-    private Long shopCreditID;
+    @Column(name = "creditid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer creditID;
 
-    @Column("shopid")
+    @Column(name = "shopid")
     private String shopID;
 
-    @Column("shopcreditval")
-    private Integer shopCreditVal;
+    @Column(name = "customid")
+    private Integer customID;
+
+    @Column(name = "credit")
+    private Integer credit;
+
+    @Column(name = "invitecustomid")
+    private String inviteCustomID;
+
+    @Column(name = "givecredit")
+    private String giveCredit;
 }

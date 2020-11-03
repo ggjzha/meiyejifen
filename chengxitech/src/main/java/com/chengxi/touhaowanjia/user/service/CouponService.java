@@ -1,4 +1,4 @@
-package com.chengxi.user.service;
+package com.chengxi.touhaowanjia.user.service;
 
 
 import com.chengxi.touhaowanjia.user.domain.CouponDomain;
@@ -12,12 +12,14 @@ import com.go.basetool.bean.UserLoginInfo;
 import com.go.basetool.idgenerator.IdGenerator;
 import com.go.basetool.utils.JsonDtoWrapper;
 import com.go.basetool.utils.WrapperUserLoginInfo;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,24 +30,30 @@ import java.util.List;
 public class CouponService {
     @Autowired
     private CouponRepo couponRepo;
-    @Autowired
-    private UserRepo userRepo;
 
-    public JsonDtoWrapper addCoupon(CouponDomain coupon, UserClient loginUser){
+    public JsonDtoWrapper setCoupon(CouponDomain coupon, UserClient loginUser){
+        log.info("addCoupon ,operator: "+loginUser.getUserID() + ",coupon"+ new Gson().toJson(coupon));
+        if(StringUtils.isEmpty(coupon.getCouponID())){
+            coupon.setCouponID(IdGenerator.genId("couponid"));
+            coupon.setShopID(loginUser.getShopID());
+        }
 
-        UserDomain user = userRepo.findByUserID(loginUser.getUserID());
-        coupon.setCouponID(IdGenerator.genId("shopid"));
-        coupon.setShopID(user.getShopID());
         couponRepo.save(coupon);
-
         JsonDtoWrapper<Object> jsonDtoWrapper = new JsonDtoWrapper<>();
         jsonDtoWrapper.setCodeMsg(APIResultCode.SUCCESS);
+        log.info("addCoupon success ,operator: "+loginUser.getUserID() );
         return jsonDtoWrapper;
     }
 
-    public JsonDtoWrapper deleteCoupon(CouponDomain coupon){
-        couponRepo.delete(coupon);
+    public JsonDtoWrapper deleteCoupon(String couponID, UserClient loginUser){
         JsonDtoWrapper<Object> j = new JsonDtoWrapper<>();
+        if(StringUtils.isEmpty(couponID)){
+            log.error("deleteCoupon faile , couponID is empty,operator: "+loginUser.getUserID());
+            j.setCodeMsg(APIResultCode.FAILURE);
+            return j;
+        }
+        couponRepo.deleteByCouponID(couponID);
+        j.setCodeMsg(APIResultCode.SUCCESS);
         return j;
     }
 
@@ -64,17 +72,17 @@ public class CouponService {
     }
 
     public JsonDtoWrapper findOnePage(Integer page, Integer pageSize, UserClient loginUser){
-        log.info("User findOnePage ,operator : " + loginUser.getUserID() + " page: " + page + " pageSize: " + pageSize);
+        log.info("Coupon findOnePage ,operator : " + loginUser.getUserID() + " page: " + page + " pageSize: " + pageSize);
         JsonDtoWrapper j = new JsonDtoWrapper();
         Integer count = couponRepo.countByShopID(loginUser.getShopID());
         int pageCount = count % pageSize == 0 ? count / pageSize : count / pageSize + 1;
         page = page - 1;
         if (page <= 0) {
             page = 0;
-            log.error("User findOnePage change page,operator : " + loginUser.getUserID() + " page: " + page);
+            log.error("Coupon findOnePage change page,operator : " + loginUser.getUserID() + " page: " + page);
         } else if (page > pageCount - 1) {
             page = pageCount - 1;
-            log.error("User findOnePage change page,operator : " + loginUser.getUserID() + " page: " + page);
+            log.error("Coupon findOnePage change page,operator : " + loginUser.getUserID() + " page: " + page);
         }
 
         PageRequest of = PageRequest.of(page, pageSize);

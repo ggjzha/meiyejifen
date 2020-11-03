@@ -39,7 +39,14 @@ public class IdGenerator {
         if (machineId.equals("000")) {
             notStartServer();
         }
-        return UUID.randomUUID().toString();
+        return "userid"+UUID.randomUUID().toString();
+    }
+
+    public static synchronized String genId(String prefix) {
+        if (machineId.equals("000")) {
+            notStartServer();
+        }
+        return prefix+UUID.randomUUID().toString();
     }
 
     public static synchronized String genCookie() {

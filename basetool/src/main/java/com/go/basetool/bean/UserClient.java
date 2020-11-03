@@ -13,11 +13,11 @@ import java.util.Date;
 public class UserClient {
     String userID;
 
-    String ip;
+    String username;
 
     String cookie;
 
     Integer myRole;
 
-    Integer status;
+    String shopID;
 }

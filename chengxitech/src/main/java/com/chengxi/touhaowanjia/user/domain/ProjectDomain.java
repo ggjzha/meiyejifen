@@ -7,22 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.Column;
+import java.math.BigDecimal;
 
 @Slf4j
 @Data
 @Entity
-@Table
+@Table(name = "project")
 public class ProjectDomain {
     @Id
-    @Column("itemid")
-    private String itemID;
+    @Column(name = "projectid")
+    private String projectID;
 
-    @Column("itemname")
-    private String itemName;
+    @Column(name = "projectname")
+    private String projectName;
 
-    @Column("itemprice")
-    private Integer itemPrice;
+    @Column(name = "projectprice")
+    private BigDecimal projectPrice;//价格
 
-    @Column("needIntegral")
-    private Integer needIntegral;
+    @Column(name = "projectneedcredit")
+    private Integer projectNeedCredit;//积分
+
+    @Column(columnDefinition = "text",name = "projectimg")
+    private String projectImg;//图片
+
+    @Column(name = "shopid")
+    private String shopID;
 }

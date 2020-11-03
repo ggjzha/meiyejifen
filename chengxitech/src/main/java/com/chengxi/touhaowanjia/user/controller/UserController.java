@@ -3,6 +3,8 @@ package com.chengxi.user.controller;
 import com.chengxi.user.dto.LoginReq;
 import com.chengxi.user.dto.UserRegisterReq;
 import com.chengxi.user.service.UserService;
+import com.go.basetool.bean.UserClient;
+import com.go.basetool.threadstatus.AbstractController;
 import com.go.basetool.utils.JsonDtoWrapper;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -16,15 +18,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @Controller
 @RequestMapping("user")
-public class UserController {
+public class UserController extends AbstractController {
 
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
+    @PostMapping("/addUser")
     @ResponseBody
-    public JsonDtoWrapper login(@RequestBody LoginReq userLoginReq) {
+    public JsonDtoWrapper login(@RequestBody User userLoginReq) {
         JsonDtoWrapper j = userService.login(userLoginReq);
+        UserClient u = getLoginUser();
         log.info(new Gson().toJson(j));
         return j;
     }

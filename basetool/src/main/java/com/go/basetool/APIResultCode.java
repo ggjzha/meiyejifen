@@ -18,7 +18,8 @@ public enum APIResultCode {
     USERID_NOT_EXIST("10", "USERID_NOT_EXIST", "USERID_NOT_EXIST"),
     USER_FROZENED("11", "用户被冻结，请联系所属企业管理员", "USER_FROZENED"),
     PHONE_OR_PWD_IS_NULL("12","手机号或密码为空","PHONE_OR_PWD_IS_NULL"),
-    SHOP_NO_CREATE("13","店铺未创建","SHOP_NO_CREATE"),;
+    SHOP_NO_CREATE("13","店铺未创建","SHOP_NO_CREATE"),
+    CUSTOM_NOT_REGISTERED("14","用户未注册","CUSTOM_NOT_REGISTERED");
 
     private static final Map<String, APIResultCode> interToEnum = new HashMap<String, APIResultCode>();
 

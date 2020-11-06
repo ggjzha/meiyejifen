@@ -3,7 +3,6 @@ package com.chengxi.touhaowanjia.user.controller;
 
 import com.chengxi.touhaowanjia.user.domain.CouponDomain;
 import com.chengxi.touhaowanjia.user.dto.CouponReq;
-import com.chengxi.touhaowanjia.user.repo.CouponRepo;
 import com.chengxi.touhaowanjia.user.service.CouponService;
 import com.go.basetool.bean.UserClient;
 import com.go.basetool.commonreq.PageReq;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.jar.JarEntry;
+
 @Slf4j
 @RestController
 @RequestMapping("/coupon")
